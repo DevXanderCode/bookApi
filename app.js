@@ -1,7 +1,12 @@
 const express = require('express'),
   mongoose = require('mongoose');
 
-const db = mongoose.connect('mongodb://localhost/bookAPI');
+const db = mongoose.connect('mongodb://localhost/bookAPI', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const Book = require('./models/bookModel');
 
 const app = express();
 
