@@ -1,7 +1,7 @@
 const express = require('express'),
   mongoose = require('mongoose');
 
-const db = mongoose.connect('mongodb://localhost/bookAPI', {
+const db = mongoose.connect('mongodb://localhost:27017/bookAPI', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -15,9 +15,11 @@ const port = process.env.PORT || 8080;
 const bookRouter = express.Router();
 
 bookRouter.route('/Books').get((req, res) => {
-  let responseJson = { hello: 'This is my Api' };
-
-  res.json(responseJson);
+  // let responseJson = { hello: 'This is my Api' };
+  Book.find((err, books) => {
+    if (err) res.status(500).send(err);
+    else res.json(books);
+  });
 });
 
 app.use('/api', bookRouter);
