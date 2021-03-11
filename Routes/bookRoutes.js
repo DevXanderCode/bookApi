@@ -1,8 +1,7 @@
 const express = require('express');
 
-const routes = () => {
+const routes = (Book) => {
   const bookRouter = express.Router();
-  const Book = require('../models/bookModel');
   bookRouter
     .route('/Books')
     .post((req, res) => {

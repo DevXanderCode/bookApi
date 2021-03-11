@@ -15,6 +15,8 @@ const db = mongoose
     (err) => console.log('Got this error when i tried to connect to mongodb', err)
   );
 
+const Book = require('./models/bookModel');
+
 const app = express();
 
 const port = process.env.PORT || 8080;
@@ -22,7 +24,7 @@ const port = process.env.PORT || 8080;
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(express.json());
 
-bookRouter = require('./Routes/bookRoutes')();
+bookRouter = require('./Routes/bookRoutes')(Book);
 
 app.use('/api', bookRouter);
 
