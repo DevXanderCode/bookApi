@@ -1,6 +1,6 @@
-const { json } = require('express');
 const express = require('express'),
-  mongoose = require('mongoose');
+  mongoose = require('mongoose'),
+  bodyParser = require('body-parser');
 
 const db = mongoose
   .connect('mongodb://localhost:27017/bookAPI', {
@@ -20,6 +20,9 @@ const Book = require('./models/bookModel');
 const app = express();
 
 const port = process.env.PORT || 8080;
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json);
 
 const bookRouter = express.Router();
 
