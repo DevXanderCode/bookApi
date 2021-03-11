@@ -21,8 +21,7 @@ const app = express();
 
 const port = process.env.PORT || 8080;
 //Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 const bookRouter = express.Router();
 
