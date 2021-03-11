@@ -3,7 +3,7 @@ const express = require('express');
 const routes = (Book) => {
   const bookRouter = express.Router();
   bookRouter
-    .route('/Books')
+    .route('/')
     .post((req, res) => {
       let book = new Book(req.body);
       book.save();
@@ -20,12 +20,25 @@ const routes = (Book) => {
       });
     });
 
-  bookRouter.route('/Books/:bookId').get((req, res) => {
-    Book.findById(req.params.bookId, (err, book) => {
-      if (err) json.status(500).send(err);
-      else res.json(book);
+  bookRouter
+    .route('/:bookId')
+    .get((req, res) => {
+      Book.findById(req.params.bookId, (err, book) => {
+        if (err) json.status(500).send(err);
+        else res.json(book);
+      });
+    })
+    .put((req, res) => {
+      Book.findById(req.params.bookId, (err, book) => {
+        if (err) json.status(500).send(err);
+        else {
+          book = { ...req.body };
+          book.save();
+          console.log(req.body);
+          res.json(book);
+        }
+      });
     });
-  });
   return bookRouter;
 };
 

@@ -26,7 +26,7 @@ app.use(express.json());
 
 bookRouter = require('./Routes/bookRoutes')(Book);
 
-app.use('/api', bookRouter);
+app.use('/api/books', bookRouter);
 
 app.get('/', (req, res) => {
   res.send('welcome to my book Api');
