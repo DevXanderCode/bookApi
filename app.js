@@ -29,9 +29,8 @@ bookRouter
   .route('/Books')
   .post((req, res) => {
     let book = new Book(req.body);
-
-    console.log('Logging Book to be added', book);
-    res.send(book);
+    book.save();
+    res.status(201).send(book);
   })
   .get((req, res) => {
     let query = {};
