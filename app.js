@@ -1,3 +1,4 @@
+const { json } = require('express');
 const express = require('express'),
   mongoose = require('mongoose');
 
@@ -30,6 +31,13 @@ bookRouter.route('/Books').get((req, res) => {
   Book.find(query, (err, books) => {
     if (err) res.status(500).send(err);
     else res.json(books);
+  });
+});
+
+bookRouter.route('/Books/:bookId').get((req, res) => {
+  Book.findById(req.params.bookId, (err, book) => {
+    if (err) json.status(500).send(err);
+    else res.json(book);
   });
 });
 
