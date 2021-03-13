@@ -1,7 +1,8 @@
-const express = require('express'),
-  mongoose = require('mongoose'),
-  bodyParser = require('body-parser');
+const express = require('express');
+const mongoose = require('mongoose');
+// const bodyParser = require('body-parser');
 
+// eslint-disable-next-line no-unused-vars
 const db = mongoose
   .connect('mongodb://localhost:27017/bookAPI', {
     useNewUrlParser: true,
@@ -12,7 +13,7 @@ const db = mongoose
     () => {
       console.log('mongoose is connected to mongo db');
     },
-    (err) => console.log('Got this error when i tried to connect to mongodb', err)
+    (err) => console.log('Got this error when i tried to connect to mongodb', err),
   );
 
 const Book = require('./models/bookModel');
@@ -21,10 +22,10 @@ const app = express();
 
 const port = process.env.PORT || 8080;
 
-//Here we are configuring express to use body-parser as middle-ware.
+// Here we are configuring express to use body-parser as middle-ware.
 app.use(express.json());
 
-bookRouter = require('./Routes/bookRoutes')(Book);
+const bookRouter = require('./Routes/bookRoutes')(Book);
 
 app.use('/api/books', bookRouter);
 

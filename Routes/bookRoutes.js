@@ -5,12 +5,12 @@ const routes = (Book) => {
   bookRouter
     .route('/')
     .post((req, res) => {
-      let book = new Book(req.body);
+      const book = new Book(req.body);
       book.save();
       res.status(201).send(book);
     })
     .get((req, res) => {
-      let query = {};
+      const query = {};
       if (req.query.genre) {
         query.genre = req.query.genre;
       }
@@ -24,16 +24,16 @@ const routes = (Book) => {
     .route('/:bookId')
     .get((req, res) => {
       Book.findById(req.params.bookId, (err, book) => {
-        if (err) json.status(500).send(err);
+        if (err) res.json.status(500).send(err);
         else res.json(book);
       });
     })
     .put((req, res) => {
       Book.findById(req.params.bookId, (err, book) => {
-        if (err) json.status(500).send(err);
+        if (err) res.json.status(500).send(err);
         else {
-          book = { ...req.body };
-          book.save();
+          // book = { ...req.body };
+          //   book.save();
           console.log(req.body);
           res.json(book);
         }
