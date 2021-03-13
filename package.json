@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,11 +16,23 @@
     "express": "^4.17.1",
     "gulp": "^4.0.2",
     "gulp-nodemon": "^2.5.0",
-    "mongoose": "^5.11.19"
+    "mongoose": "^5.11.19",
+    "nodemon": "^2.0.7"
   },
   "devDependencies": {
     "eslint": "^7.22.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1"
+  },
+  "nodemonConfig": {
+    "restartable": "rs",
+    "ignore": [
+      "node_modules/**/node_modules"
+    ],
+    "delay": "2500",
+    "env": {
+      "NODE_ENV": "developement",
+      "PORT": 8080
+    }
   }
 }

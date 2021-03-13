@@ -20,7 +20,7 @@ const Book = require('./models/bookModel');
 
 const app = express();
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 3000;
 
 // Here we are configuring express to use body-parser as middle-ware.
 app.use(express.json());
