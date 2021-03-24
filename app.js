@@ -22,7 +22,7 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
-// Here we are configuring express to use body-parser as middle-ware.
+// Here we are configuring express middleware to take object as the post data.
 app.use(express.json());
 
 const bookRouter = require('./Routes/bookRoutes')(Book);

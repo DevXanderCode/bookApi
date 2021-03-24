@@ -15,8 +15,8 @@ const routes = (Book) => {
         query.genre = req.query.genre;
       }
       Book.find(query, (err, books) => {
-        if (err) res.status(500).send(err);
-        else res.json(books);
+        if (err) return res.status(500).send(err);
+        return res.json(books);
       });
     });
 
@@ -24,8 +24,8 @@ const routes = (Book) => {
     .route('/:bookId')
     .get((req, res) => {
       Book.findById(req.params.bookId, (err, book) => {
-        if (err) res.json.status(500).send(err);
-        else res.json(book);
+        if (err) return res.json.status(500).send(err);
+        return res.json(book);
       });
     })
     .put((req, res) => {
