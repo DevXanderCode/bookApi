@@ -34,17 +34,15 @@ const routes = (Book) => {
     .route('/:bookId')
     .get((req, res) => res.json(req.book))
     .put((req, res) => {
-      Book.findById(req.params.bookId, (err, book) => {
-        if (err) return res.json.status(500).send(err);
+      const { book } = req.book;
 
-        book.author = req.body.author;
-        book.title = req.body.title;
-        book.genre = req.body.genre;
-        book.read = req.body.read;
-        book.save();
-        console.log(req.body);
-        return res.json(book);
-      });
+      book.author = req.body.author;
+      book.title = req.body.title;
+      book.genre = req.body.genre;
+      book.read = req.body.read;
+      book.save();
+      console.log(req.body);
+      return res.json(book);
     });
   return bookRouter;
 };
