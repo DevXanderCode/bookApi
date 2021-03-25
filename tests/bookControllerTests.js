@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 const should = require('should');
 const sinon = require('sinon');
 const bookContoller = require('../controller/bookController');
@@ -6,6 +7,7 @@ const bookContoller = require('../controller/bookController');
 describe('Book Controller Tests:', () => {
   describe('Posts', () => {
     it('should not allow an empty title on post', () => {
+      // eslint-disable-next-line no-unused-vars, func-names
       const Book = function (book) {
         this.save = () => {};
       };
