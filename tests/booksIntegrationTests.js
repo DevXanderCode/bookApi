@@ -20,4 +20,9 @@ describe('Book CRUD Test', () => {
         done();
       });
   });
+
+  afterEach((done) => {
+    Book.deleteMany({}).exec();
+    done();
+  });
 });
