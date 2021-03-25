@@ -18,7 +18,7 @@ describe('Book Controller Tests:', () => {
       const res = {
         status: sinon.spy(),
         send: sinon.spy(),
-        JSON: sinon.spy(),
+        json: sinon.spy(),
       };
 
       const controller = bookContoller(Book);
