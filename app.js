@@ -1,20 +1,49 @@
 const express = require('express');
 const mongoose = require('mongoose');
-// const bodyParser = require('body-parser');
+
+if (process.env.ENV === 'Test') {
+  console.log('This is a Test');
+  const db = mongoose
+    .connect('mongodb://localhost:27017/bookAPI_Test', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+    .then(
+      () => {
+        console.log('mongoose is connected to mongo db');
+      },
+      (err) => console.log('Got this error when i tried to connect to mongodb', err),
+    );
+} else {
+  console.log('This is not a Test');
+  const db = mongoose
+    .connect('mongodb://localhost:27017/bookAPI_prod', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    })
+    .then(
+      () => {
+        console.log('mongoose is connected to mongo db');
+      },
+      (err) => console.log('Got this error when i tried to connect to mongodb', err),
+    );
+}
 
 // eslint-disable-next-line no-unused-vars
-const db = mongoose
-  .connect('mongodb://localhost:27017/bookAPI', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
-  .then(
-    () => {
-      console.log('mongoose is connected to mongo db');
-    },
-    (err) => console.log('Got this error when i tried to connect to mongodb', err),
-  );
+// const db = mongoose
+//   .connect('mongodb://localhost:27017/bookAPI', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     useCreateIndex: true,
+//   })
+//   .then(
+//     () => {
+//       console.log('mongoose is connected to mongo db');
+//     },
+//     (err) => console.log('Got this error when i tried to connect to mongodb', err),
+//   );
 
 const Book = require('./models/bookModel');
 
