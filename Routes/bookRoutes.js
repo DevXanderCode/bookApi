@@ -40,8 +40,12 @@ const routes = (Book) => {
       book.title = req.body.title;
       book.genre = req.body.genre;
       book.read = req.body.read;
-      book.save();
-      return res.json(book);
+      req.book.save((err) => {
+        if (err) {
+          return res.send(err);
+        }
+        return res.json(book);
+      });
     })
     .patch((req, res) => {
       const { book } = req;
