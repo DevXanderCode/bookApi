@@ -18,8 +18,8 @@ describe('Book CRUD Test', () => {
       .send(bookPost)
       .expect(200)
       .end((err, results) => {
-        console.log('logging results ', results);
-        results.body.read.should.not.equal(false);
+        // console.log('logging results ', results);
+        // results.body.read.should.not.equal(false);
         results.body.should.have.property('_id');
         done();
       });
@@ -29,4 +29,6 @@ describe('Book CRUD Test', () => {
     Book.deleteMany({}).exec();
     done();
   });
+
+  after((done) => mongoose.connection.close(done()));
 });
