@@ -62,7 +62,7 @@ app.get('/', (req, res) => {
   res.send('welcome to my book Api');
 });
 
-app.listen(port, () => {
+app.server = app.listen(port, () => {
   console.log(`Running on port ${port}`);
 });
 
