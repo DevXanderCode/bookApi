@@ -17,7 +17,13 @@ function booksController(Book) {
     }
     Book.find(query, (err, books) => {
       if (err) return res.status(500).send(err);
-      return res.json(books);
+      const returnBooks = books.map((book) => {
+        const newBook = book.toJSON();
+        newBook.links = {};
+        newBook.links.self = `http://${req.headers.host}/api/books/${book._id}`;
+        return newBook;
+      });
+      return res.json(returnBooks);
     });
   }
 
